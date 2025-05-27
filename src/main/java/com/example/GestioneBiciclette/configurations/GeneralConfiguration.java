@@ -21,8 +21,4 @@ public class GeneralConfiguration {
     public Equipaggiamento creaEquipaggiamento(){
         return new Equipaggiamento();
     }
-
-    @Bean
-    @Scope("prototype")
-    public Bicicletta creaBicicletta()  { return new Bicicletta();}
 }

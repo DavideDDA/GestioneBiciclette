@@ -1,5 +1,6 @@
 package com.example.GestioneBiciclette.services;
 
+import com.example.GestioneBiciclette.factory.BiciclettaFactory;
 import com.example.GestioneBiciclette.models.Bicicletta;
 import com.example.GestioneBiciclette.repositories.BiciclettaRepository;
 import org.springframework.beans.factory.ObjectProvider;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 @Service
 public class BiciclettaServiceImp implements BiciclettaService{
@@ -20,14 +20,15 @@ public class BiciclettaServiceImp implements BiciclettaService{
     @Autowired
     BiciclettaRepository biciclettaRepository;
 
+    @Autowired
+    BiciclettaFactory biciclettaFactory;
+
 
     @Override
     public Bicicletta creaBicicletta(Bicicletta bicicletta) {
-        Bicicletta bici = biciclettaObjectProvider.getObject();
-        bici.setCategoriaBicicletta(bicicletta.getCategoriaBicicletta());
-        bici.setParcheggio(bicicletta.getParcheggio());
-        bici.setEquipaggiamenti(bicicletta.getEquipaggiamenti());
-        bici.setCodiceIdentificativo(generaCodice());
+        Bicicletta bici = biciclettaFactory.creaBicicletta(bicicletta.getCategoriaBicicletta(),
+                bicicletta.getParcheggio(),
+                bicicletta.getEquipaggiamenti());
         return biciclettaRepository.save(bici);
     }
 
@@ -54,9 +55,5 @@ public class BiciclettaServiceImp implements BiciclettaService{
         }else {
             return biciclettaRepository.save(bicicletta);
         }
-    }
-
-    private String generaCodice() {
-        return "BICI-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }
 }
