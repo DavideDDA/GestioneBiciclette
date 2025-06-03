@@ -1,8 +1,8 @@
 package com.example.GestioneBiciclette.configurations;
 
-import com.example.GestioneBiciclette.models.Bicicletta;
 import com.example.GestioneBiciclette.models.Equipaggiamento;
 import com.example.GestioneBiciclette.models.Parcheggio;
+import com.example.GestioneBiciclette.models.Tariffa;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -21,4 +21,8 @@ public class GeneralConfiguration {
     public Equipaggiamento creaEquipaggiamento(){
         return new Equipaggiamento();
     }
+
+    @Bean
+    @Scope("prototype")
+    public Tariffa creaTariffa(){ return new Tariffa();}
 }

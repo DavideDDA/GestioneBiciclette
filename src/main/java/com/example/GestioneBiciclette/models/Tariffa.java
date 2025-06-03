@@ -27,4 +27,10 @@ public class Tariffa {
         double ore = minuti / 60.0;
         return (ore * prezzoOrario) + (chilometri * prezzoPerKm);
     }
+
+    public Tariffa(CategoriaBicicletta categoria, Double prezzoOrario, Double prezzoPerKm) {
+        this.categoria = categoria;
+        this.prezzoOrario = prezzoOrario;
+        this.prezzoPerKm = prezzoPerKm;
+    }
 }

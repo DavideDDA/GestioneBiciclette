@@ -62,7 +62,7 @@ public class GeneralRunner implements CommandLineRunner {
     public void creaBici(){
         Set<Equipaggiamento> equipaggiamenti = new HashSet<>();
         equipaggiamenti.add(equipaggiamentoService.findByIdEquipaggiamento(1L));
-        Bicicletta bici = new Bicicletta(CategoriaBicicletta.CORSA, parcheggioService.findParcheggioById(2L), equipaggiamenti);
+        Bicicletta bici = new Bicicletta(CategoriaBicicletta.CORSA, parcheggioService.findParcheggioById(1L), equipaggiamenti);
         biciclettaService.creaBicicletta(bici);
     }
 }
