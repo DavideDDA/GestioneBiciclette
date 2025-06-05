@@ -2,7 +2,7 @@ package com.example.GestioneBiciclette.runners;
 
 
 import com.example.GestioneBiciclette.models.Bicicletta;
-import com.example.GestioneBiciclette.models.CategoriaBicicletta;
+import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
 import com.example.GestioneBiciclette.models.Equipaggiamento;
 import com.example.GestioneBiciclette.models.Parcheggio;
 import com.example.GestioneBiciclette.services.BiciclettaService;

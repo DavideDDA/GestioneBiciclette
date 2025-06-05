@@ -1,8 +1,8 @@
-package com.example.GestioneBiciclette.factory;
+package com.example.GestioneBiciclette.simpleFactory;
 
 
 import com.example.GestioneBiciclette.models.Bicicletta;
-import com.example.GestioneBiciclette.models.CategoriaBicicletta;
+import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
 import com.example.GestioneBiciclette.models.Equipaggiamento;
 import com.example.GestioneBiciclette.models.Parcheggio;
 import org.springframework.stereotype.Component;

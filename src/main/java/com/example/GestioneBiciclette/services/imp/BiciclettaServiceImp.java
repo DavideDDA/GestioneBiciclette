@@ -1,6 +1,7 @@
-package com.example.GestioneBiciclette.services;
+package com.example.GestioneBiciclette.services.imp;
 
-import com.example.GestioneBiciclette.factory.BiciclettaFactory;
+import com.example.GestioneBiciclette.services.BiciclettaService;
+import com.example.GestioneBiciclette.simpleFactory.BiciclettaFactory;
 import com.example.GestioneBiciclette.models.Bicicletta;
 import com.example.GestioneBiciclette.repositories.BiciclettaRepository;
 import org.springframework.beans.factory.ObjectProvider;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-public class BiciclettaServiceImp implements BiciclettaService{
+public class BiciclettaServiceImp implements BiciclettaService {
 
     @Autowired @Qualifier("creaBicicletta")
     ObjectProvider<Bicicletta> biciclettaObjectProvider;

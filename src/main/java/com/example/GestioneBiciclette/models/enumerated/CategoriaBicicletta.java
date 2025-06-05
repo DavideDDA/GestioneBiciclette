@@ -1,4 +1,4 @@
-package com.example.GestioneBiciclette.models;
+package com.example.GestioneBiciclette.models.enumerated;
 
 public enum CategoriaBicicletta {
     PASSEGGIO,

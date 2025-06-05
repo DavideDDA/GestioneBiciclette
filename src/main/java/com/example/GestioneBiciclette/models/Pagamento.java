@@ -1,5 +1,6 @@
 package com.example.GestioneBiciclette.models;
 
+import com.example.GestioneBiciclette.models.enumerated.TipoPagamento;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,11 +23,11 @@ public class Pagamento {
     @Column(nullable = false)
     private Double importo;
 
-    private LocalDateTime dataPagamento;
+    private LocalDateTime dataPagamento = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_pagamento", nullable = false)
-    private MetodoDiPagamento metodo;
+    private TipoPagamento metodo;
 
     @OneToOne
     @JoinColumn(name = "prenotazione_id", nullable = false)

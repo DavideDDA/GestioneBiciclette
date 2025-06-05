@@ -1,7 +1,7 @@
 package com.example.GestioneBiciclette.controllers;
 
 
-import com.example.GestioneBiciclette.models.CategoriaBicicletta;
+import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
 import com.example.GestioneBiciclette.models.Tariffa;
 import com.example.GestioneBiciclette.services.TariffaService;
 import org.springframework.beans.factory.annotation.Autowired;

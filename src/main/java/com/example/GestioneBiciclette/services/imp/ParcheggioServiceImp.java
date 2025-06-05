@@ -1,7 +1,8 @@
-package com.example.GestioneBiciclette.services;
+package com.example.GestioneBiciclette.services.imp;
 
 import com.example.GestioneBiciclette.models.Parcheggio;
 import com.example.GestioneBiciclette.repositories.ParcheggioRepository;
+import com.example.GestioneBiciclette.services.ParcheggioService;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-public class ParcheggioServiceImp implements ParcheggioService{
+public class ParcheggioServiceImp implements ParcheggioService {
 
     @Autowired @Qualifier("creaParcheggio")
     ObjectProvider<Parcheggio> parcheggioObjectProvider;

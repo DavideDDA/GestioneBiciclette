@@ -1,5 +1,6 @@
 package com.example.GestioneBiciclette.models;
 
+import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,10 +38,6 @@ public class Bicicletta {
 
     @Column(name = "numero_noleggi")
     private Integer numeroNoleggi = 0;
-
-    @ManyToOne
-    @JoinColumn(name = "tariffa_id")
-    private Tariffa tariffa;
 
     @ManyToMany
     @JoinTable(

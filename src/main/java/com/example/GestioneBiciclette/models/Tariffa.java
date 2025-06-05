@@ -1,5 +1,6 @@
 package com.example.GestioneBiciclette.models;
 
+import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

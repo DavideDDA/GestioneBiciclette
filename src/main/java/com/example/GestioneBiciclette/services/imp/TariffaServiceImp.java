@@ -1,9 +1,10 @@
-package com.example.GestioneBiciclette.services;
+package com.example.GestioneBiciclette.services.imp;
 
 
-import com.example.GestioneBiciclette.models.CategoriaBicicletta;
+import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
 import com.example.GestioneBiciclette.models.Tariffa;
 import com.example.GestioneBiciclette.repositories.TariffaRepository;
+import com.example.GestioneBiciclette.services.TariffaService;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-public class TariffaServiceImp implements TariffaService{
+public class TariffaServiceImp implements TariffaService {
 
     @Autowired @Qualifier("creaTariffa")
     ObjectProvider<Tariffa> tariffaObjectProvider;
