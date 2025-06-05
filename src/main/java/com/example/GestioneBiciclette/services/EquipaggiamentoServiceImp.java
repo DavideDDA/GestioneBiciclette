@@ -26,6 +26,9 @@ public class EquipaggiamentoServiceImp implements EquipaggiamentoService{
         Equipaggiamento equipaggiamento1 = equipaggiamentoObjectProvider.getObject();
         equipaggiamento1.setNome(equipaggiamento.getNome());
         equipaggiamento1.setDescrizione(equipaggiamento.getDescrizione());
+        if (equipaggiamento.getPrezzo() <= 0){
+            throw new IllegalArgumentException("Il prezzo non puo essere uguale a 0 o negativo!");
+        }
         equipaggiamento1.setPrezzo(equipaggiamento.getPrezzo());
         return equipaggiamentoRepository.save(equipaggiamento1);
     }

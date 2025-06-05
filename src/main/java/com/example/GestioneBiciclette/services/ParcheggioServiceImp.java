@@ -24,6 +24,9 @@ public class ParcheggioServiceImp implements ParcheggioService{
         Parcheggio parcheggio1 = parcheggioObjectProvider.getObject();
 
         parcheggio1.setNome(parcheggio.getNome());
+        if (parcheggio.getCapacita() < 0){
+            throw new IllegalArgumentException("La capacita non puo contenere un valore negativo");
+        }
         parcheggio1.setCapacita(parcheggio.getCapacita());
         parcheggio1.setCitta(parcheggio.getCitta());
         return parcheggioRepository.save(parcheggio1);

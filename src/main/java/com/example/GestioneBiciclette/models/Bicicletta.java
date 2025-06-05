@@ -32,9 +32,15 @@ public class Bicicletta {
     @JoinColumn(name = "id_parcheggio")
     private Parcheggio parcheggio;
 
+    @Column(name = "chilometri_totali")
     private Double chilometriTotali = 0.0;
 
+    @Column(name = "numero_noleggi")
     private Integer numeroNoleggi = 0;
+
+    @ManyToOne
+    @JoinColumn(name = "tariffa_id")
+    private Tariffa tariffa;
 
     @ManyToMany
     @JoinTable(

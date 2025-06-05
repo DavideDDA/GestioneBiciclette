@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -24,6 +27,9 @@ public class Parcheggio {
 
     @Column(nullable = false)
     private Integer capacita;
+
+    @OneToMany(mappedBy = "parcheggio")
+    private List<Bicicletta> biciclette = new ArrayList<>();
 
     public Parcheggio(String nome, String citta, Integer capacita) {
         this.nome = nome;
