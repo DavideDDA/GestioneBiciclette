@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -23,11 +25,11 @@ public class Tariffa {
     
     private Double prezzoPerKm;
 
-    // Metodo per calcolare il costo totale
-    public Double calcolaCosto(int minuti, double chilometri) {
+    public Double calcolaCosto(double minuti, double chilometri) {
         double ore = minuti / 60.0;
         return (ore * prezzoOrario) + (chilometri * prezzoPerKm);
     }
+    
 
     public Tariffa(CategoriaBicicletta categoria, Double prezzoOrario, Double prezzoPerKm) {
         this.categoria = categoria;
