@@ -22,7 +22,7 @@ public class Prenotazione {
     @Column(name = "codice_prenotazione", nullable = false, unique = true)
     private String codicePrenotazione;
 
-    private LocalDateTime dataInizio;
+    private LocalDateTime dataInizio = LocalDateTime.now();
 
     private LocalDateTime dataFine;
 

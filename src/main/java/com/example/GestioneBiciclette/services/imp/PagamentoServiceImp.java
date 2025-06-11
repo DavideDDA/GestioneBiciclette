@@ -75,4 +75,14 @@ public class PagamentoServiceImp implements PagamentoService {
 
         return pagamentoRepository.save(pagamento);
     }
+
+    @Override
+    public Pagamento findById(Long id) {
+        return pagamentoRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public List<Pagamento> findAllPagamenti() {
+        return pagamentoRepository.findAll();
+    }
 }

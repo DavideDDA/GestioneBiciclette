@@ -1,9 +1,6 @@
 package com.example.GestioneBiciclette.configurations;
 
-import com.example.GestioneBiciclette.models.Equipaggiamento;
-import com.example.GestioneBiciclette.models.Pagamento;
-import com.example.GestioneBiciclette.models.Parcheggio;
-import com.example.GestioneBiciclette.models.Tariffa;
+import com.example.GestioneBiciclette.models.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -30,4 +27,8 @@ public class GeneralConfiguration {
     @Bean
     @Scope("prototype")
     public Pagamento effettuaPagamento() { return new Pagamento();}
+
+    @Bean
+    @Scope("prototype")
+    public Prenotazione effettuaPrenotazione() { return new Prenotazione(); }
 }
