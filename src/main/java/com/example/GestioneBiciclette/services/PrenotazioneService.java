@@ -1,5 +1,6 @@
 package com.example.GestioneBiciclette.services;
 
+import com.example.GestioneBiciclette.DTO.PrenotazioneDTO;
 import com.example.GestioneBiciclette.models.Bicicletta;
 import com.example.GestioneBiciclette.models.Pagamento;
 import com.example.GestioneBiciclette.models.Parcheggio;
@@ -15,5 +16,5 @@ public interface PrenotazioneService {
     Prenotazione findPrenotazioneById(Long id);
     Prenotazione findPrenotazioneByUser(User user);
     Prenotazione findByBicicletta(Bicicletta bicicletta);
-    Prenotazione creaPrenotazione(LocalDateTime dataFine, User user, Bicicletta bicicletta, Parcheggio parcheggioArrivo);
+    Prenotazione creaPrenotazione(PrenotazioneDTO prenotazioneDTO);
 }

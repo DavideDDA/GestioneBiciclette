@@ -31,8 +31,8 @@ public class PagamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<Pagamento> processaPagamento(@RequestParam Long id, @RequestParam TipoPagamento tipoPagamento, @RequestParam Double kmPercorsi){
-        return ResponseEntity.ok(pagamentoService.processaPagamento(id, tipoPagamento, kmPercorsi));
+    public ResponseEntity<Pagamento> processaPagamento(@RequestParam Long id, @RequestParam TipoPagamento tipoPagamento){
+        return ResponseEntity.ok(pagamentoService.processaPagamento(id, tipoPagamento));
     }
 
 }

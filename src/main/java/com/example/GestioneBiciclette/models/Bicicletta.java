@@ -1,6 +1,9 @@
 package com.example.GestioneBiciclette.models;
 
 import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +18,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "biciclette")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Bicicletta {
 
     @Id

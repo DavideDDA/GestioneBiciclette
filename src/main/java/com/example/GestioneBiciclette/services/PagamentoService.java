@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PagamentoService {
 
-    Pagamento processaPagamento(Long prenotazioneId, TipoPagamento tipoPagamento, Double kmPercorsi);
+    Pagamento processaPagamento(Long prenotazioneId, TipoPagamento tipoPagamento);
     Pagamento findById(Long id);
     List<Pagamento> findAllPagamenti();
 }

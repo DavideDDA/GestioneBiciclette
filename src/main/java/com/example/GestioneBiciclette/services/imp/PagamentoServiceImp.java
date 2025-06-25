@@ -1,11 +1,13 @@
 package com.example.GestioneBiciclette.services.imp;
 
 
+import com.example.GestioneBiciclette.models.Bicicletta;
 import com.example.GestioneBiciclette.models.Pagamento;
 import com.example.GestioneBiciclette.models.Prenotazione;
 import com.example.GestioneBiciclette.models.Tariffa;
 import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
 import com.example.GestioneBiciclette.models.enumerated.TipoPagamento;
+import com.example.GestioneBiciclette.repositories.BiciclettaRepository;
 import com.example.GestioneBiciclette.repositories.PagamentoRepository;
 import com.example.GestioneBiciclette.repositories.PrenotazioneRepository;
 import com.example.GestioneBiciclette.repositories.TariffaRepository;
@@ -37,6 +39,9 @@ public class PagamentoServiceImp implements PagamentoService {
     @Autowired
     PrenotazioneRepository prenotazioneRepository;
 
+    @Autowired
+    BiciclettaRepository biciclettaRepository;
+
     private final Map<TipoPagamento, PaymentStrategy> paymentStrategies;
 
     @Autowired
@@ -49,19 +54,22 @@ public class PagamentoServiceImp implements PagamentoService {
     }
 
     @Override
-    public Pagamento processaPagamento(Long prenotazioneId, TipoPagamento tipoPagamento, Double kmPercorsi) {
+    public Pagamento processaPagamento(Long prenotazioneId, TipoPagamento tipoPagamento) {
         Prenotazione prenotazione = prenotazioneRepository.findById(prenotazioneId).orElseThrow(() -> new RuntimeException("Prenotazione non trovata"));
         CategoriaBicicletta categoriaBicicletta = prenotazione.getBicicletta().getCategoriaBicicletta();
         Tariffa tariffa = tariffaRepository.findByCategoria(categoriaBicicletta);
+        Bicicletta bicicletta = biciclettaRepository.findById(prenotazione.getBicicletta().getId()).orElseThrow();
 
         long minuti = Duration.between(
                 prenotazione.getDataInizio(),
                 prenotazione.getDataFine()
         ).toMinutes();
 
-        double totale = tariffa.calcolaCosto(minuti, kmPercorsi);
+        double km = prenotazione.calcolaKm(prenotazione);
 
-        BigDecimal importo = BigDecimal.valueOf(totale);
+        double costoTotale = tariffa.calcolaCosto(minuti, km);
+
+        BigDecimal importo = BigDecimal.valueOf(costoTotale);
 
         PaymentStrategy strategy = paymentStrategies.get(tipoPagamento);
         if (strategy == null){
@@ -72,6 +80,12 @@ public class PagamentoServiceImp implements PagamentoService {
         pagamento.setPrenotazione(prenotazione);
         pagamento.setMetodo(tipoPagamento);
         pagamento.setImporto(importo);
+
+        double nuoviKm = bicicletta.getChilometriTotali() + km;
+        bicicletta.setChilometriTotali(nuoviKm);
+        bicicletta.setNumeroNoleggi(bicicletta.getNumeroNoleggi() + 1);
+        bicicletta.setDisponibile(true);
+        biciclettaRepository.save(bicicletta);
 
         return pagamentoRepository.save(pagamento);
     }

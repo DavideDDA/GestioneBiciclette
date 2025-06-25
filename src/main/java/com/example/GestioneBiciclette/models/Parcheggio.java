@@ -1,5 +1,7 @@
 package com.example.GestioneBiciclette.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +15,10 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "parcheggi")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Parcheggio {
 
     @Id

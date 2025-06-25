@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -45,4 +46,19 @@ public class Prenotazione {
     @OneToOne(mappedBy = "prenotazione", cascade = CascadeType.ALL)
     private Pagamento pagamento;
 
+    public Double calcolaKm(Prenotazione prenotazione){
+        long minuti = Duration.between(
+                prenotazione.getDataInizio(),
+                prenotazione.getDataFine()
+        ).toMinutes();
+        double kmPerMinuto = 0.1;
+        return kmPerMinuto * minuti;
+    }
+
+    public Prenotazione(LocalDateTime dataFine, User user, Bicicletta bicicletta, Parcheggio parcheggioArrivo) {
+        this.dataFine = dataFine;
+        this.user = user;
+        this.bicicletta = bicicletta;
+        this.parcheggioArrivo = parcheggioArrivo;
+    }
 }
