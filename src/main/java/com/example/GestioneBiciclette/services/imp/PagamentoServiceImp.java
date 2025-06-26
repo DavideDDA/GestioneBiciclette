@@ -1,10 +1,7 @@
 package com.example.GestioneBiciclette.services.imp;
 
 
-import com.example.GestioneBiciclette.models.Bicicletta;
-import com.example.GestioneBiciclette.models.Pagamento;
-import com.example.GestioneBiciclette.models.Prenotazione;
-import com.example.GestioneBiciclette.models.Tariffa;
+import com.example.GestioneBiciclette.models.*;
 import com.example.GestioneBiciclette.models.enumerated.CategoriaBicicletta;
 import com.example.GestioneBiciclette.models.enumerated.TipoPagamento;
 import com.example.GestioneBiciclette.repositories.BiciclettaRepository;
@@ -79,8 +76,13 @@ public class PagamentoServiceImp implements PagamentoService {
         Pagamento pagamento = pagamentoObjectProvider.getObject();
         pagamento.setPrenotazione(prenotazione);
         pagamento.setMetodo(tipoPagamento);
-        pagamento.setImporto(importo);
-
+        BigDecimal importoFinale = importo;
+        if (!bicicletta.getEquipaggiamenti().isEmpty()) {
+            double extra = bicicletta.getEquipaggiamenti().stream()
+                    .mapToDouble(Equipaggiamento::getPrezzo).sum();
+            importoFinale = importoFinale.add(BigDecimal.valueOf(extra));
+        }
+        pagamento.setImporto(importoFinale);
         double nuoviKm = bicicletta.getChilometriTotali() + km;
         bicicletta.setChilometriTotali(nuoviKm);
         bicicletta.setNumeroNoleggi(bicicletta.getNumeroNoleggi() + 1);
